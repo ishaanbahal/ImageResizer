@@ -1,0 +1,10 @@
+Help for Image Resizer Library
+Author: Ishaan Bahal
+Date: 06-10-2014
+
+***This is a text file which can be modified to suit the help file in further updates.***
+
+Input Arguments:
+	1. <<I/P FILENAME>> <<O/P FILENAME>>: Will ask for factor.
+	2. <<I/P FILENAME>> <<factor>> <<O/P FILENAME>>
+	3. -h or --help: For viewing help.

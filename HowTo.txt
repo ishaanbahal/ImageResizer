@@ -1,0 +1,5 @@
+This library is written python 3.4 but will work on all python 3.x versions. Please refrain from using python 2.x
+To successfully run make sure that Python Image Library is installed.
+
+To install PIL just type in the terminal as root: #pip install Pillow
+
