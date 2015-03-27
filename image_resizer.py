@@ -6,11 +6,12 @@
 import sys
 from PIL import Image
 
-'''
-Simple resize function. Takes in filename, factor of scale, and output file name.
-Does not give a warning of file replace, so use caution.
-'''
+
 def resize(filename, factor, output):
+    '''
+    Simple resize function. Takes in filename, factor of scale, and output file name.
+    Does not give a warning of file replace, so use caution.
+    '''
     im=Image.open(filename)
     x,y=im.size
     print('Original resolution: '+str(x)+'X'+str(y))
@@ -20,26 +21,28 @@ def resize(filename, factor, output):
     print('Final Resolution: '+ str(a.size[0])+'X'+str(a.size[1]))
     im.close()
     a.close()
-'''
-If final width is known and aspect ratio is to be maintained, then use this method.
-Returns factor of resizing.
-'''
+
 def factor_width(width,filename):
-    tmp=Image.open(filename)
+    '''
+    If final width is known and aspect ratio is to be maintained, then use this method.
+    Returns factor of resizing.
+    '''
+    im=Image.open(filename)
     x=im.size[0]
-    factor=width/original
-    tmp.close()
+    factor=int(width)/x
+    im.close()
     return factor
 
-'''
-If final height is known and aspect ratio is to be maintained, then use this method.
-Returns factor of resizing.
-'''
+
 def factor_height(height,filename):
-    tmp=Image.open(filename)
+    '''
+    If final height is known and aspect ratio is to be maintained, then use this method.
+    Returns factor of resizing.
+    '''
+    im=Image.open(filename)
     x=im.size[1]
-    factor=height/original
-    tmp.close()
+    factor=int(height)/x
+    im.close()
     return factor
 
 def main():
@@ -69,7 +72,13 @@ def main():
         factor=sys.argv[2]
         output=sys.argv[3]
         print("Warning: Same name for output will replace file without warning")
-
+    if len(sys.argv)==5:
+        filename=sys.argv[1]
+        if sys.argv[2]=='height'or sys.argv[2]=='h':
+            factor=factor_height(sys.argv[4],filename)
+        elif sys.argv[2]=='width' or sys.argv[2]=='w':
+            factor=factor_width(sys.argv[4],filename)
+        output=sys.argv[3]
     resize(filename, factor, output)
 
 if __name__=='__main__':
